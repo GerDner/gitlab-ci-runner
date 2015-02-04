@@ -10,8 +10,12 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv E1DF1F24 \
       zlib1g libyaml-0-2 libssl1.0.0 \
       libgdbm3 libreadline6 libncurses5 libffi6 \
       libxml2 libxslt1.1 libcurl3 libicu52 \
+      php5 mysql-server mysql-client php5-gd php5-mysql \
+      nodejs npm \
 && gem install --no-document bundler \
-&& rm -rf /var/lib/apt/lists/* # 20140918
+&& rm -rf /var/lib/apt/lists/* # 20140918 \
+RUN DEBIAN_FRONTEND=noninteractive npm install -g bower
+&& npm install -g grunt-cli
 
 ADD assets/setup/ /app/setup/
 RUN chmod 755 /app/setup/install
